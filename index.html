@@ -94,6 +94,12 @@
             color: #0ea5e9;
         }
 
+        .logo-img {
+            height: 40px;
+            width: auto;
+            object-fit: contain;
+        }
+
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -116,10 +122,14 @@
         <div class="max-w-7xl mx-auto px-6 lg:px-12">
             <div class="flex justify-between items-center h-20">
                 <a href="#home" class="flex items-center space-x-3 group cursor-pointer">
-                    <div class="bg-blue-500 p-2 rounded-lg transition-transform group-hover:scale-110">
-                        <i data-lucide="layers" class="text-white w-5 h-5"></i>
+                    <!-- GitHub Logo Integration -->
+                    <div class="relative">
+                        <img src="logo.png" alt="SIA Logo" class="logo-img transition-transform group-hover:scale-105" onerror="this.style.display='none'; document.getElementById('fallback-icon').classList.remove('hidden')">
+                        <div id="fallback-icon" class="hidden bg-blue-500 p-2 rounded-lg">
+                            <i data-lucide="layers" class="text-white w-5 h-5"></i>
+                        </div>
                     </div>
-                    <div>
+                    <div class="hidden sm:block">
                         <span class="block font-black text-sm tracking-tighter uppercase text-slate-900">SIA Software</span>
                         <span class="block text-[10px] font-bold text-blue-500 tracking-[0.3em] uppercase">Innovations</span>
                     </div>
@@ -298,7 +308,9 @@
             <div class="grid lg:grid-cols-4 gap-16 mb-24">
                 <div class="lg:col-span-2">
                     <div class="flex items-center space-x-3 mb-8">
-                        <div class="bg-blue-500 p-1.5 rounded-md">
+                        <!-- Footer Logo Integration -->
+                        <img src="logo.png" alt="SIA Logo" class="h-8 w-auto grayscale brightness-0 opacity-80" onerror="this.style.display='none'; document.getElementById('footer-fallback').classList.remove('hidden')">
+                        <div id="footer-fallback" class="hidden bg-blue-500 p-1.5 rounded-md">
                             <i data-lucide="layers" class="text-white w-4 h-4"></i>
                         </div>
                         <span class="font-black text-sm uppercase tracking-tighter text-slate-900">SIA Software Innovations</span>
