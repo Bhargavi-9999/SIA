@@ -94,10 +94,26 @@
             color: #0ea5e9;
         }
 
+        /* Logo Styling */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            height: 48px;
+        }
+
         .logo-img {
-            height: 40px;
+            max-height: 44px;
             width: auto;
-            object-fit: contain;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .footer-logo-img {
+            max-height: 36px;
+            width: auto;
+            /* Applying a subtle tint to the footer logo to match the brand color */
+            filter: brightness(0) saturate(100%) invert(48%) sepia(91%) saturate(1630%) hue-rotate(175deg) brightness(97%) contrast(93%);
+            opacity: 0.9;
         }
 
         ::-webkit-scrollbar {
@@ -121,10 +137,10 @@
     <nav class="fixed w-full z-50 nav-blur border-b border-sky-50">
         <div class="max-w-7xl mx-auto px-6 lg:px-12">
             <div class="flex justify-between items-center h-20">
-                <a href="#home" class="flex items-center space-x-3 group cursor-pointer">
-                    <!-- GitHub Logo Integration -->
+                <a href="#home" class="logo-container group cursor-pointer space-x-3">
+                    <!-- Main Logo: Using Logo.png -->
                     <div class="relative">
-                        <img src="logo.png" alt="SIA Logo" class="logo-img transition-transform group-hover:scale-105" onerror="this.style.display='none'; document.getElementById('fallback-icon').classList.remove('hidden')">
+                        <img src="Logo.png" alt="SIA Logo" class="logo-img group-hover:scale-110" onerror="this.style.display='none'; document.getElementById('fallback-icon').classList.remove('hidden')">
                         <div id="fallback-icon" class="hidden bg-blue-500 p-2 rounded-lg">
                             <i data-lucide="layers" class="text-white w-5 h-5"></i>
                         </div>
@@ -308,10 +324,12 @@
             <div class="grid lg:grid-cols-4 gap-16 mb-24">
                 <div class="lg:col-span-2">
                     <div class="flex items-center space-x-3 mb-8">
-                        <!-- Footer Logo Integration -->
-                        <img src="logo.png" alt="SIA Logo" class="h-8 w-auto grayscale brightness-0 opacity-80" onerror="this.style.display='none'; document.getElementById('footer-fallback').classList.remove('hidden')">
-                        <div id="footer-fallback" class="hidden bg-blue-500 p-1.5 rounded-md">
-                            <i data-lucide="layers" class="text-white w-4 h-4"></i>
+                        <!-- Footer Logo: Using Logo.png -->
+                        <div class="relative">
+                            <img src="Logo.png" alt="SIA Logo" class="footer-logo-img" onerror="this.style.display='none'; document.getElementById('footer-fallback').classList.remove('hidden')">
+                            <div id="footer-fallback" class="hidden bg-blue-500 p-1.5 rounded-md">
+                                <i data-lucide="layers" class="text-white w-4 h-4"></i>
+                            </div>
                         </div>
                         <span class="font-black text-sm uppercase tracking-tighter text-slate-900">SIA Software Innovations</span>
                     </div>
