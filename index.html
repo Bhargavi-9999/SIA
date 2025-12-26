@@ -111,9 +111,44 @@
         .footer-logo-img {
             max-height: 36px;
             width: auto;
-            /* Applying a subtle tint to the footer logo to match the brand color */
             filter: brightness(0) saturate(100%) invert(48%) sepia(91%) saturate(1630%) hue-rotate(175deg) brightness(97%) contrast(93%);
             opacity: 0.9;
+        }
+
+        /* Image Gallery Styles */
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1rem;
+            aspect-ratio: 16/10;
+            background: #f1f5f9;
+            box-shadow: 0 4px 20px -5px rgba(0,0,0,0.1);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(15, 23, 42, 0.9), transparent 70%);
+            opacity: 0;
+            transition: all 0.4s ease;
+            display: flex;
+            align-items: flex-end;
+            padding: 1.5rem;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
         }
 
         ::-webkit-scrollbar {
@@ -138,7 +173,6 @@
         <div class="max-w-7xl mx-auto px-6 lg:px-12">
             <div class="flex justify-between items-center h-20">
                 <a href="#home" class="logo-container group cursor-pointer space-x-3">
-                    <!-- Main Logo: Using Logo.png -->
                     <div class="relative">
                         <img src="Logo.png" alt="SIA Logo" class="logo-img group-hover:scale-110" onerror="this.style.display='none'; document.getElementById('fallback-icon').classList.remove('hidden')">
                         <div id="fallback-icon" class="hidden bg-blue-500 p-2 rounded-lg">
@@ -154,7 +188,7 @@
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="#home" class="nav-link text-xs font-bold text-slate-500 hover:text-blue-500">HOME</a>
                     <a href="#about" class="nav-link text-xs font-bold text-slate-500 hover:text-blue-500">ABOUT</a>
-                    <a href="#competencies" class="nav-link text-xs font-bold text-slate-500 hover:text-blue-500">SOLUTIONS</a>
+                    <a href="#gallery" class="nav-link text-xs font-bold text-slate-500 hover:text-blue-500">GALLERY</a>
                     <a href="#leadership" class="nav-link text-xs font-bold text-slate-500 hover:text-blue-500">LEADERSHIP</a>
                     <a href="#contact" class="btn-blue px-6 py-2.5 rounded-lg text-xs font-bold uppercase tracking-widest">Contact</a>
                 </div>
@@ -164,18 +198,10 @@
                 </button>
             </div>
         </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-sky-100 px-6 py-8 space-y-6 shadow-xl">
-            <a href="#home" class="block text-sm font-bold text-slate-600" onclick="toggleMenu()">Home</a>
-            <a href="#about" class="block text-sm font-bold text-slate-600" onclick="toggleMenu()">About</a>
-            <a href="#competencies" class="block text-sm font-bold text-slate-600" onclick="toggleMenu()">Solutions</a>
-            <a href="#leadership" class="block text-sm font-bold text-slate-600" onclick="toggleMenu()">Leadership</a>
-            <a href="#contact" class="block text-sm font-bold text-blue-500" onclick="toggleMenu()">Contact</a>
-        </div>
     </nav>
 
     <!-- Home Section -->
-    <section id="home" class="pt-56 pb-32 relative overflow-hidden">
+    <section id="home" class="pt-56 pb-20 relative overflow-hidden">
         <div class="graphic-blob w-[700px] h-[700px] -top-48 -right-24 rotate-12"></div>
         <div class="max-w-7xl mx-auto px-6 lg:px-12">
             <div class="max-w-4xl">
@@ -188,10 +214,73 @@
                 <p class="text-xl md:text-2xl text-slate-500 leading-relaxed mb-12 max-w-2xl font-medium">
                     Designing extensible, software-defined systems that solve complex computational challenges with architectural precision.
                 </p>
-                <div class="flex flex-wrap gap-6">
+                <div class="flex flex-wrap gap-6 mb-20">
                     <a href="#about" class="btn-blue px-10 py-5 rounded-lg text-sm font-bold uppercase tracking-widest">Learn More</a>
                     <a href="#contact" class="px-10 py-5 rounded-lg text-sm font-bold text-blue-600 border-2 border-blue-500 hover:bg-blue-500 hover:text-white transition uppercase tracking-widest">Get In Touch</a>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Innovation Gallery Section with 4 Placeholders -->
+    <section id="gallery" class="pb-32 px-6 lg:px-12">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-12">
+                <h2 class="text-xs font-black text-blue-500 uppercase tracking-[0.4em] mb-4">Innovation Showcase</h2>
+                <h3 class="text-4xl font-black tracking-tighter uppercase">Visualizing our Labs</h3>
+            </div>
+            
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Photo 1 -->
+                <div class="gallery-item group">
+                    <img src="photo1.jpg" alt="Research & Development" onerror="this.src='https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=800'">
+                    <div class="gallery-overlay">
+                        <div>
+                            <p class="text-[10px] font-black tracking-widest text-blue-400 uppercase mb-1">Systems</p>
+                            <h4 class="text-lg font-bold text-white uppercase tracking-tighter leading-tight">Robotics Lab</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Photo 2 -->
+                <div class="gallery-item group">
+                    <img src="photo2.jpg" alt="Software Architecture" onerror="this.src='https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800'">
+                    <div class="gallery-overlay">
+                        <div>
+                            <p class="text-[10px] font-black tracking-widest text-blue-400 uppercase mb-1">Infrastructure</p>
+                            <h4 class="text-lg font-bold text-white uppercase tracking-tighter leading-tight">Cloud Core</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Photo 3 -->
+                <div class="gallery-item group">
+                    <img src="photo3.jpg" alt="Data Analytics" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800'">
+                    <div class="gallery-overlay">
+                        <div>
+                            <p class="text-[10px] font-black tracking-widest text-blue-400 uppercase mb-1">Research</p>
+                            <h4 class="text-lg font-bold text-white uppercase tracking-tighter leading-tight">Neural Design</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Photo 4 -->
+                <div class="gallery-item group">
+                    <img src="photo4.jpg" alt="Visual Analytics" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800'">
+                    <div class="gallery-overlay">
+                        <div>
+                            <p class="text-[10px] font-black tracking-widest text-blue-400 uppercase mb-1">Vision</p>
+                            <h4 class="text-lg font-bold text-white uppercase tracking-tighter leading-tight">Digital Twin</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-10 p-4 bg-sky-50 rounded-xl border border-sky-100">
+                <p class="text-[11px] text-slate-500 font-bold uppercase tracking-widest flex items-center">
+                    <i data-lucide="info" class="w-4 h-4 mr-2 text-blue-500"></i>
+                    Dev Note: Upload 'photo1.jpg' to 'photo4.jpg' to your folder to replace these placeholders.
+                </p>
             </div>
         </div>
     </section>
@@ -210,9 +299,6 @@
                         </p>
                         <p class="font-bold text-slate-900 border-l-4 border-blue-500 pl-6">
                             We specialize in building scalable, research-driven software that addresses complex analytical and simulation-oriented problems.
-                        </p>
-                        <p>
-                            Our proprietary frameworks support innovation across academic, industrial, and public-sector environments, ensuring future-proof adaptability.
                         </p>
                     </div>
                 </div>
@@ -239,37 +325,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Competencies / Solutions Section -->
-    <section id="competencies" class="section-padding">
-        <div class="max-w-7xl mx-auto px-6 lg:px-12 mb-20 text-center md:text-left">
-            <h2 class="text-xs font-black text-blue-500 uppercase tracking-[0.4em] mb-4">Competencies</h2>
-            <h3 class="text-5xl font-black tracking-tighter uppercase">High-Contrast Solutions</h3>
-        </div>
-        <div class="max-w-7xl mx-auto px-6 lg:px-12 grid md:grid-cols-3 gap-8">
-            <div class="card-interactive p-12 rounded-2xl group">
-                <div class="w-14 h-14 bg-sky-50 rounded-xl flex items-center justify-center mb-8 group-hover:bg-blue-500 transition-colors">
-                    <i data-lucide="cpu" class="text-blue-500 group-hover:text-white w-8 h-8"></i>
-                </div>
-                <h4 class="text-2xl font-black mb-4 uppercase tracking-tighter">Architecture</h4>
-                <p class="text-slate-500 text-sm font-medium">High-performance systems and scientific algorithm engineering built for global scalability.</p>
-            </div>
-            <div class="card-interactive p-12 rounded-2xl group">
-                <div class="w-14 h-14 bg-sky-50 rounded-xl flex items-center justify-center mb-8 group-hover:bg-blue-500 transition-colors">
-                    <i data-lucide="activity" class="text-blue-500 group-hover:text-white w-8 h-8"></i>
-                </div>
-                <h4 class="text-2xl font-black mb-4 uppercase tracking-tighter">Intelligence</h4>
-                <p class="text-slate-500 text-sm font-medium">Proprietary frameworks and data-driven innovations that redefine computational efficiency.</p>
-            </div>
-            <div class="card-interactive p-12 rounded-2xl group">
-                <div class="w-14 h-14 bg-sky-50 rounded-xl flex items-center justify-center mb-8 group-hover:bg-blue-500 transition-colors">
-                    <i data-lucide="terminal" class="text-blue-500 group-hover:text-white w-8 h-8"></i>
-                </div>
-                <h4 class="text-2xl font-black mb-4 uppercase tracking-tighter">Consulting</h4>
-                <p class="text-slate-500 text-sm font-medium">Expert system design services and collaborative R&D for next-generation software paradigms.</p>
             </div>
         </div>
     </section>
@@ -324,7 +379,6 @@
             <div class="grid lg:grid-cols-4 gap-16 mb-24">
                 <div class="lg:col-span-2">
                     <div class="flex items-center space-x-3 mb-8">
-                        <!-- Footer Logo: Using Logo.png -->
                         <div class="relative">
                             <img src="Logo.png" alt="SIA Logo" class="footer-logo-img" onerror="this.style.display='none'; document.getElementById('footer-fallback').classList.remove('hidden')">
                             <div id="footer-fallback" class="hidden bg-blue-500 p-1.5 rounded-md">
@@ -333,16 +387,13 @@
                         </div>
                         <span class="font-black text-sm uppercase tracking-tighter text-slate-900">SIA Software Innovations</span>
                     </div>
-                    <p class="text-sm font-medium text-slate-500 leading-loose max-w-sm italic">
-                        Registered Office: D.No. 3-159/1, V Narayana Theater Road, Malikipuram, East Godavari – 533253, Andhra Pradesh, India.
-                    </p>
                 </div>
                 <div>
                     <h5 class="font-black text-[10px] uppercase tracking-[0.4em] text-blue-300 mb-8">Sitemap</h5>
                     <ul class="text-sm font-bold text-slate-600 space-y-4">
                         <li><a href="#home" class="hover:text-blue-500 transition">Home</a></li>
                         <li><a href="#about" class="hover:text-blue-500 transition">About</a></li>
-                        <li><a href="#competencies" class="hover:text-blue-500 transition">Solutions</a></li>
+                        <li><a href="#gallery" class="hover:text-blue-500 transition">Gallery</a></li>
                         <li><a href="#leadership" class="hover:text-blue-500 transition">Leadership</a></li>
                     </ul>
                 </div>
@@ -354,10 +405,6 @@
             </div>
             <div class="pt-12 border-t border-sky-100 flex flex-col md:flex-row justify-between items-center text-[10px] font-black text-slate-400 uppercase tracking-[0.4em]">
                 <p>&copy; 2025 SIA SOFTWARE INNOVATIONS PVT LTD</p>
-                <div class="mt-8 md:mt-0 flex space-x-12">
-                    <a href="#" class="hover:text-blue-500 transition">LinkedIn</a>
-                    <a href="#" class="hover:text-blue-500 transition">GitHub</a>
-                </div>
             </div>
         </div>
     </footer>
