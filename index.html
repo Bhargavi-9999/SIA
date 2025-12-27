@@ -7,423 +7,203 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap');
         
-        body {
-            font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
-            color: #1e293b; /* Slate-800 */
-            background-color: #ffffff;
-            line-height: 1.6;
+        :root { 
+            --metallic-blue-deep: #0f172a; 
+            --accent-blue: #2563eb;
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --deep-bg: #020617;
         }
 
-        .section-padding {
-            padding: 8rem 1.5rem;
+        body { 
+            font-family: 'Inter', sans-serif; 
+            color: #f1f5f9; 
+            background-color: var(--deep-bg); 
+            margin: 0; 
+            overflow-x: hidden; 
         }
 
-        /* Light Blue Grid Background Graphic */
-        .bg-grid-pattern {
-            background-image: radial-gradient(#bae6fd 1px, transparent 1px); /* Sky-200 */
-            background-size: 40px 40px;
+        .mono { font-family: 'JetBrains Mono', monospace; }
+
+        /* Video Layering - Fixed White Screen Issue */
+        .video-container { 
+            position: absolute; 
+            top: 0; left: 0; 
+            width: 100%; height: 100vh; 
+            overflow: hidden; 
+            z-index: -2; 
+            background-color: var(--deep-bg); /* Prevents white flash if video fails */
+        }
+        .video-container video { 
+            min-width: 100%; min-height: 100%; 
+            width: auto; height: auto; 
+            position: absolute; 
+            top: 50%; left: 50%; 
+            transform: translate(-50%, -50%); 
+            object-fit: cover; 
+            filter: saturate(0.8) brightness(0.6);
+        }
+        .video-overlay { 
+            position: absolute; 
+            top: 0; left: 0; 
+            width: 100%; height: 100vh; 
+            background: linear-gradient(to bottom, rgba(2, 6, 23, 0.8) 0%, rgba(2, 6, 23, 0.5) 50%, #020617 100%); 
+            z-index: -1; 
         }
 
-        .nav-blur {
-            background: rgba(255, 255, 255, 0.9);
+        /* Professional Nav */
+        .nav-blur { 
+            background: rgba(2, 6, 23, 0.85); 
+            backdrop-filter: blur(24px); 
+            border-bottom: 1px solid var(--glass-border); 
+        }
+
+        /* Buttons */
+        .btn-software {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            letter-spacing: 0.05em;
+        }
+        .btn-software:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.4);
+            filter: brightness(1.1);
+        }
+
+        /* UI Elements */
+        .card-glass {
+            background: rgba(15, 23, 42, 0.6);
             backdrop-filter: blur(12px);
-            transition: all 0.3s ease;
+            border: 1px solid var(--glass-border);
+            transition: border-color 0.3s ease;
+        }
+        .card-glass:hover {
+            border-color: rgba(59, 130, 246, 0.3);
         }
 
-        .card-interactive {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid #e0f2fe; /* Sky-100 */
-            background-color: #ffffff;
-        }
-
-        .card-interactive:hover {
-            border-color: #0ea5e9; /* Sky-500 */
-            transform: translateY(-6px);
-            box-shadow: 0 20px 40px -15px rgba(14, 165, 233, 0.15);
-        }
-
-        .btn-blue {
-            background-color: #0ea5e9;
-            color: #ffffff;
-            transition: all 0.3s ease;
-        }
-
-        .btn-blue:hover {
-            background-color: #0284c7;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(14, 165, 233, 0.4);
-        }
-
-        h1, h2, h3 {
-            color: #0f172a; /* Slate-900 */
-            letter-spacing: -0.03em;
-        }
-
-        /* Light Blue Graphic Element */
-        .graphic-blob {
-            position: absolute;
-            background: rgba(14, 165, 233, 0.05);
-            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-            z-index: -1;
-        }
-
-        .nav-link {
-            position: relative;
-            transition: color 0.3s ease;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 0;
-            background-color: #0ea5e9;
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        .text-blue-accent {
-            color: #0ea5e9;
-        }
-
-        /* Logo Styling */
-        .logo-container {
-            display: flex;
-            align-items: center;
-            height: 48px;
-        }
-
-        .logo-img {
-            max-height: 44px;
-            width: auto;
-            display: block;
-            transition: transform 0.3s ease;
-        }
-
-        .footer-logo-img {
-            max-height: 36px;
-            width: auto;
-            filter: brightness(0) saturate(100%) invert(48%) sepia(91%) saturate(1630%) hue-rotate(175deg) brightness(97%) contrast(93%);
-            opacity: 0.9;
-        }
-
-        /* Image Gallery Styles */
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 1rem;
-            aspect-ratio: 16/10;
-            background: #f1f5f9;
-            box-shadow: 0 4px 20px -5px rgba(0,0,0,0.1);
-        }
-        
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.08);
-        }
-
-        .gallery-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(15, 23, 42, 0.9), transparent 70%);
-            opacity: 0;
-            transition: all 0.4s ease;
-            display: flex;
-            align-items: flex-end;
-            padding: 1.5rem;
-        }
-
-        .gallery-item:hover .gallery-overlay {
-            opacity: 1;
-        }
-
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f0f9ff;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #bae6fd;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #0ea5e9;
+        .text-gradient {
+            background: linear-gradient(135deg, #ffffff 30%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
     </style>
 </head>
-<body class="bg-grid-pattern">
+<body class="min-h-screen flex flex-col">
+    <!-- Updated Video Container with Live Source -->
+    <div class="video-container">
+        <video autoplay muted loop playsinline>
+            <source src="https://grok.com/imagine/post/02035b6c-317a-4089-b026-ebca86d4f4b1?source=post-page&platform=web" type="video/mp4">
+        </video>
+        <div class="video-overlay"></div>
+    </div>
 
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 nav-blur border-b border-sky-50">
-        <div class="max-w-7xl mx-auto px-6 lg:px-12">
-            <div class="flex justify-between items-center h-20">
-                <a href="#home" class="logo-container group cursor-pointer space-x-3">
-                    <div class="relative">
-                        <img src="Logo.png" alt="SIA Logo" class="logo-img group-hover:scale-110" onerror="this.style.display='none'; document.getElementById('fallback-icon').classList.remove('hidden')">
-                        <div id="fallback-icon" class="hidden bg-blue-500 p-2 rounded-lg">
-                            <i data-lucide="layers" class="text-white w-5 h-5"></i>
-                        </div>
-                    </div>
-                    <div class="hidden sm:block">
-                        <span class="block font-black text-sm tracking-tighter uppercase text-slate-900">SIA Software</span>
-                        <span class="block text-[10px] font-bold text-blue-500 tracking-[0.3em] uppercase">Innovations</span>
-                    </div>
-                </a>
-
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#home" class="nav-link text-xs font-bold text-slate-500 hover:text-blue-500">HOME</a>
-                    <a href="#about" class="nav-link text-xs font-bold text-slate-500 hover:text-blue-500">ABOUT</a>
-                    <a href="#gallery" class="nav-link text-xs font-bold text-slate-500 hover:text-blue-500">GALLERY</a>
-                    <a href="#leadership" class="nav-link text-xs font-bold text-slate-500 hover:text-blue-500">LEADERSHIP</a>
-                    <a href="#contact" class="btn-blue px-6 py-2.5 rounded-lg text-xs font-bold uppercase tracking-widest">Contact</a>
+    <!-- Header -->
+    <nav class="fixed w-full z-50 nav-blur">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 flex justify-between items-center h-20">
+            <a href="index.html" class="flex items-center space-x-4 group">
+                <img src="Logo.gif" alt="SIA Logo" class="h-10 w-auto filter drop-shadow(0 0 5px rgba(59, 130, 246, 0.5))" onerror="this.src='https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/layers.svg'">
+                <div class="leading-none">
+                    <span class="block font-black text-xl uppercase tracking-tighter text-white group-hover:text-blue-400 transition-colors">SIA Software</span>
+                    <span class="block text-[8px] font-bold text-blue-500 tracking-[0.6em] uppercase mt-1">Innovations</span>
                 </div>
-
-                <button class="md:hidden p-2 text-slate-900" onclick="toggleMenu()">
-                    <i data-lucide="menu" id="menu-icon" class="w-6 h-6"></i>
-                </button>
+            </a>
+            <div class="hidden md:flex items-center space-x-12">
+                <div class="flex space-x-8 text-[11px] font-bold uppercase tracking-[0.2em]">
+                    <a href="index.html" class="text-blue-500">Home</a>
+                    <a href="about.html" class="text-slate-400 hover:text-white transition-colors">About</a>
+                    <a href="products.html" class="text-slate-400 hover:text-white transition-colors">Products</a>
+                </div>
+                <a href="contact.html" class="btn-software px-7 py-3 rounded text-[11px] font-black uppercase tracking-widest text-white">Collaborate With Us</a>
             </div>
         </div>
     </nav>
 
-    <!-- Home Section -->
-    <section id="home" class="pt-56 pb-20 relative overflow-hidden">
-        <div class="graphic-blob w-[700px] h-[700px] -top-48 -right-24 rotate-12"></div>
-        <div class="max-w-7xl mx-auto px-6 lg:px-12">
-            <div class="max-w-4xl">
-                <div class="inline-flex items-center space-x-2 px-4 py-1.5 bg-blue-50 text-blue-600 border border-blue-100 rounded-md mb-10">
-                    <span class="text-[10px] font-black tracking-[0.3em] uppercase">Architecture of the Future</span>
-                </div>
-                <h1 class="text-6xl md:text-8xl font-black mb-8 leading-[0.9] tracking-tighter">
-                    DEFINING THE <br><span class="text-blue-accent">NEW CORE.</span>
-                </h1>
-                <p class="text-xl md:text-2xl text-slate-500 leading-relaxed mb-12 max-w-2xl font-medium">
-                    Designing extensible, software-defined systems that solve complex computational challenges with architectural precision.
+    <!-- Hero -->
+    <main class="flex-grow flex flex-col justify-center pt-32 px-6 lg:px-12 max-w-7xl mx-auto relative w-full">
+        <div class="max-w-4xl">
+            <div class="mono text-[10px] text-blue-400 font-bold uppercase tracking-[0.5em] mb-6 flex items-center">
+                <span class="w-8 h-[1px] bg-blue-500 mr-4"></span>
+                Structured System Design
+            </div>
+            <h1 class="text-6xl md:text-[7.5rem] font-black mb-8 leading-[0.9] tracking-tighter uppercase text-gradient">
+                Access Beyond <br><span class="text-blue-600">Limits.</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-slate-400 leading-relaxed mb-12 max-w-2xl font-light">
+                Engineering <span class="text-white font-medium">software-defined ecosystems</span> that translate complex research into reliable, scalable platforms. 
+            </p>
+            <div class="flex flex-wrap gap-6">
+                <a href="contact.html" class="btn-software px-12 py-5 rounded text-xs font-black uppercase tracking-[0.2em] text-white">
+                    Start Collaboration
+                </a>
+                <a href="products.html" class="px-12 py-5 rounded text-xs font-black uppercase tracking-[0.2em] border border-slate-700 hover:border-slate-400 transition-all flex items-center gap-2">
+                    Our Products <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- System Stats -->
+        <div class="mt-24 grid grid-cols-2 md:grid-cols-4 gap-8 py-8 border-t border-white/5">
+            <div>
+                <p class="mono text-[10px] text-slate-500 mb-1">// TYPE</p>
+                <p class="text-xs font-bold uppercase tracking-widest">Product Dev</p>
+            </div>
+            <div>
+                <p class="mono text-[10px] text-slate-500 mb-1">// CORE</p>
+                <p class="text-xs font-bold uppercase tracking-widest">Quantum-Inspired</p>
+            </div>
+            <div>
+                <p class="mono text-[10px] text-slate-500 mb-1">// SCALE</p>
+                <p class="text-xs font-bold uppercase tracking-widest">Distributed</p>
+            </div>
+            <div>
+                <p class="mono text-[10px] text-slate-500 mb-1">// STATUS</p>
+                <p class="text-xs font-bold uppercase tracking-widest flex items-center gap-2">
+                    <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span> Operational
                 </p>
-                <div class="flex flex-wrap gap-6 mb-20">
-                    <a href="#about" class="btn-blue px-10 py-5 rounded-lg text-sm font-bold uppercase tracking-widest">Learn More</a>
-                    <a href="#contact" class="px-10 py-5 rounded-lg text-sm font-bold text-blue-600 border-2 border-blue-500 hover:bg-blue-500 hover:text-white transition uppercase tracking-widest">Get In Touch</a>
-                </div>
             </div>
         </div>
-    </section>
+    </main>
 
-    <!-- Innovation Gallery Section with User Provided Pictures -->
-    <section id="gallery" class="pb-32 px-6 lg:px-12">
+    <!-- Global Footer -->
+    <footer class="bg-black py-20 px-6 lg:px-12 border-t border-white/5">
         <div class="max-w-7xl mx-auto">
-            <div class="mb-12">
-                <h2 class="text-xs font-black text-blue-500 uppercase tracking-[0.4em] mb-4">Innovation Showcase</h2>
-                <h3 class="text-4xl font-black tracking-tighter uppercase">INNOVATIVE SCALABLE SOLUTIONS</h3>
-            </div>
-            
-            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Photo 1 -->
-                <div class="gallery-item group">
-                    <img src="image1.jfif" alt="Innovation 1" onerror="this.src='https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=800'">
-                    <div class="gallery-overlay">
-                        <div>
-                            <p class="text-[10px] font-black tracking-widest text-blue-400 uppercase mb-1">Systems</p>
-                            <h4 class="text-lg font-bold text-white uppercase tracking-tighter leading-tight">Robotics Lab</h4>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Photo 2 -->
-                <div class="gallery-item group">
-                    <img src="image2.jfif" alt="Innovation 2" onerror="this.src='https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800'">
-                    <div class="gallery-overlay">
-                        <div>
-                            <p class="text-[10px] font-black tracking-widest text-blue-400 uppercase mb-1">Infrastructure</p>
-                            <h4 class="text-lg font-bold text-white uppercase tracking-tighter leading-tight">Cloud Core</h4>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Photo 3 -->
-                <div class="gallery-item group">
-                    <img src="image3.jfif" alt="Innovation 3" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800'">
-                    <div class="gallery-overlay">
-                        <div>
-                            <p class="text-[10px] font-black tracking-widest text-blue-400 uppercase mb-1">Research</p>
-                            <h4 class="text-lg font-bold text-white uppercase tracking-tighter leading-tight">Neural Design</h4>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Photo 4 -->
-                <div class="gallery-item group">
-                    <img src="image4.jfif" alt="Innovation 4" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800'">
-                    <div class="gallery-overlay">
-                        <div>
-                            <p class="text-[10px] font-black tracking-widest text-blue-400 uppercase mb-1">Vision</p>
-                            <h4 class="text-lg font-bold text-white uppercase tracking-tighter leading-tight">Digital Twin</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="section-padding bg-sky-50/30 relative border-y border-sky-100">
-        <div class="max-w-7xl mx-auto px-6 lg:px-12">
-            <div class="grid lg:grid-cols-2 gap-24 items-center">
-                <div class="relative">
-                    <div class="absolute -top-12 -left-12 w-24 h-24 border-l-4 border-t-4 border-blue-500"></div>
-                    <h2 class="text-xs font-black text-blue-500 uppercase tracking-[0.4em] mb-4">Our Vision</h2>
-                    <h2 class="text-4xl font-black mb-10 uppercase tracking-tighter">Innovation Driven</h2>
-                    <div class="space-y-6 text-slate-600 text-lg leading-relaxed">
-                        <p>
-                            SIA Software Innovations Private Limited is a technology firm dedicated to the design and deployment of advanced digital systems. 
-                        </p>
-                        <p class="font-bold text-slate-900 border-l-4 border-blue-500 pl-6">
-                            We specialize in building scalable, research-driven software that addresses complex analytical and simulation-oriented problems.
-                        </p>
-                    </div>
-                </div>
-                <div class="bg-slate-900 p-12 rounded-3xl shadow-2xl relative overflow-hidden group">
-                    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(14,165,233,0.2),_transparent)]"></div>
-                    <div class="grid gap-10 relative z-10">
-                        <div class="flex items-start space-x-6">
-                            <div class="bg-blue-500/20 p-4 rounded-xl border border-blue-500/30">
-                                <i data-lucide="binary" class="text-blue-400 w-8 h-8"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-slate-400 mb-1 uppercase text-xs tracking-[0.3em]">Corporate ID</h4>
-                                <p class="text-lg font-mono text-white">U62013AP2025PTC122642</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start space-x-6">
-                            <div class="bg-blue-500/20 p-4 rounded-xl border border-blue-500/30">
-                                <i data-lucide="calendar-days" class="text-blue-400 w-8 h-8"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-slate-400 mb-1 uppercase text-xs tracking-[0.3em]">Inc. Date</h4>
-                                <p class="text-lg text-white font-bold uppercase">12 Dec 2025</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Leadership Section -->
-    <section id="leadership" class="section-padding bg-slate-900 relative border-t border-slate-800">
-        <div class="absolute inset-0 bg-grid-pattern opacity-5"></div>
-        <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
-            <div class="mb-20">
-                <h2 class="text-xs font-black text-blue-400 uppercase tracking-[0.4em] mb-4">Board Members</h2>
-                <h2 class="text-5xl font-black tracking-tighter uppercase text-white">Board of Directors</h2>
-            </div>
-            <div class="grid md:grid-cols-2 gap-12">
-                <div class="group bg-slate-800/50 p-12 rounded-3xl border border-slate-700 hover:border-blue-500 transition-all">
-                    <h3 class="text-3xl font-black mb-4 leading-none tracking-tighter text-white">Naga Sai Durga Nagesh Seshabattara Venkata</h3>
-                    <p class="text-xs font-black text-blue-400 uppercase tracking-[0.3em] mb-8">Chairman & Managing Director</p>
-                    <div class="flex items-center justify-between pt-8 border-t border-slate-700">
-                        <span class="text-[10px] font-mono font-bold text-slate-500">DIN: 11426220</span>
-                        <div class="w-10 h-10 rounded-full border border-slate-700 flex items-center justify-center group-hover:bg-blue-500 group-hover:text-white transition-all">
-                            <i data-lucide="linkedin" class="w-4 h-4"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="group bg-slate-800/50 p-12 rounded-3xl border border-slate-700 hover:border-blue-500 transition-all">
-                    <h3 class="text-3xl font-black mb-4 leading-none tracking-tighter text-white">Uday Chandar Medicharla</h3>
-                    <p class="text-xs font-black text-blue-400 uppercase tracking-[0.3em] mb-8">Executive Director & CEO</p>
-                    <div class="flex items-center justify-between pt-8 border-t border-slate-700">
-                        <span class="text-[10px] font-mono font-bold text-slate-500">DIN: 11426219</span>
-                        <div class="w-10 h-10 rounded-full border border-slate-700 flex items-center justify-center group-hover:bg-blue-500 group-hover:text-white transition-all">
-                            <i data-lucide="linkedin" class="w-4 h-4"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="section-padding">
-        <div class="max-w-7xl mx-auto px-6 lg:px-12 text-center">
-            <h2 class="text-5xl md:text-7xl font-black tracking-tighter mb-10 text-slate-900">READY FOR THE <br><span class="text-blue-accent">BREAKTHROUGH?</span></h2>
-            <p class="text-slate-500 text-xl mb-12 font-medium">Inquiries regarding architectural partnerships and software-defined systems.</p>
-            <a href="mailto:contact@siainnovations.com" class="btn-blue inline-block px-12 py-6 rounded-2xl text-lg font-black uppercase tracking-widest">
-                contact@siainnovations.com
-            </a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-white border-t border-sky-100 pt-32 pb-16">
-        <div class="max-w-7xl mx-auto px-6 lg:px-12">
-            <div class="grid lg:grid-cols-4 gap-16 mb-24">
-                <div class="lg:col-span-2">
-                    <div class="flex items-center space-x-3 mb-8">
-                        <div class="relative">
-                            <img src="Logo.png" alt="SIA Logo" class="footer-logo-img" onerror="this.style.display='none'; document.getElementById('footer-fallback').classList.remove('hidden')">
-                            <div id="footer-fallback" class="hidden bg-blue-500 p-1.5 rounded-md">
-                                <i data-lucide="layers" class="text-white w-4 h-4"></i>
-                            </div>
-                        </div>
-                        <span class="font-black text-sm uppercase tracking-tighter text-slate-900">SIA Software Innovations</span>
-                    </div>
+            <div class="grid md:grid-cols-4 gap-12 mb-16">
+                <div class="col-span-2">
+                    <h4 class="font-black text-2xl text-white mb-2 tracking-tighter">SIA SOFTWARE INNOVATIONS</h4>
+                    <p class="text-[9px] text-blue-500 font-bold uppercase tracking-[0.5em] mb-6">Access Beyond Limits</p>
+                    <p class="text-slate-500 text-sm max-w-sm">
+                        A software-focused technology company engaged in the development of structured, scalable software systems.
+                    </p>
                 </div>
                 <div>
-                    <h5 class="font-black text-[10px] uppercase tracking-[0.4em] text-blue-300 mb-8">Sitemap</h5>
-                    <ul class="text-sm font-bold text-slate-600 space-y-4">
-                        <li><a href="#home" class="hover:text-blue-500 transition">Home</a></li>
-                        <li><a href="#about" class="hover:text-blue-500 transition">About</a></li>
-                        <li><a href="#gallery" class="hover:text-blue-500 transition">Gallery</a></li>
-                        <li><a href="#leadership" class="hover:text-blue-500 transition">Leadership</a></li>
+                    <h5 class="text-[10px] font-black text-white uppercase tracking-widest mb-6">Navigation</h5>
+                    <ul class="space-y-4 text-xs font-bold text-slate-500 uppercase tracking-widest">
+                        <li><a href="about.html" class="hover:text-blue-500 transition-colors">About</a></li>
+                        <li><a href="products.html" class="hover:text-blue-500 transition-colors">Products</a></li>
+                        <li><a href="contact.html" class="hover:text-blue-500 transition-colors">Collaborate</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h5 class="font-black text-[10px] uppercase tracking-[0.4em] text-blue-300 mb-8">Compliance</h5>
-                    <p class="text-sm font-bold text-slate-900 mb-4">CIN: U62013AP2025PTC122642</p>
-                    <p class="text-[10px] font-black text-blue-400 tracking-widest uppercase">Est. 2025</p>
+                    <h5 class="text-[10px] font-black text-white uppercase tracking-widest mb-6">Identity</h5>
+                    <div class="space-y-4 text-[10px] font-bold text-slate-500 uppercase tracking-widest">
+                        <p>CIN: <span class="text-slate-300">U62013AP2025PTC122642</span></p>
+                        <p>DPIIT: <span class="text-slate-300">DIPP235818</span></p>
+                    </div>
                 </div>
             </div>
-            <div class="pt-12 border-t border-sky-100 flex flex-col md:flex-row justify-between items-center text-[10px] font-black text-slate-400 uppercase tracking-[0.4em]">
-                <p>&copy; 2025 SIA SOFTWARE INNOVATIONS PVT LTD</p>
+            <div class="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] text-slate-600 font-bold">
+                <span>© 2025 SIA SOFTWARE INNOVATIONS PRIVATE LIMITED. ALL RIGHTS RESERVED.</span>
+                <div class="flex gap-8 uppercase tracking-widest">
+                    <span>Andhra Pradesh, India</span>
+                </div>
             </div>
         </div>
     </footer>
 
     <script>
         lucide.createIcons();
-
-        function toggleMenu() {
-            const menu = document.getElementById('mobile-menu');
-            const icon = document.getElementById('menu-icon');
-            menu.classList.toggle('hidden');
-            const isVisible = !menu.classList.contains('hidden');
-            icon.setAttribute('data-lucide', isVisible ? 'x' : 'menu');
-            lucide.createIcons();
-        }
-
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.classList.add('shadow-xl', 'py-1');
-            } else {
-                nav.classList.remove('shadow-xl', 'py-1');
-            }
-        });
     </script>
 </body>
 </html>
