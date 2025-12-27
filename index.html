@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SIA Software Innovations | Access Beyond Limits</title>
+    <title>SIA Software Innovations | ACCESS BEYOND LIMITS</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
@@ -19,6 +19,7 @@
             --text-secondary: #5E6B7A;
         }
 
+        html { scroll-behavior: smooth; }
         body { 
             font-family: 'Plus Jakarta Sans', sans-serif; 
             color: var(--text-primary); 
@@ -29,13 +30,11 @@
 
         .mono { font-family: 'JetBrains Mono', monospace; }
 
-        /* Navigation */
         .nav-navy { 
             background: var(--deep-navy); 
             border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
-        /* Buttons - Using your specific hex codes */
         .btn-primary-steel {
             background-color: var(--steel-blue);
             color: #FFFFFF;
@@ -43,174 +42,328 @@
         }
         .btn-primary-steel:hover {
             background-color: #1F3B5E;
-            transform: translateY(-1px);
         }
 
         .btn-secondary-outline {
             background: transparent;
             color: var(--steel-blue);
-            border: 2px solid var(--steel-blue);
+            border: 1px solid var(--steel-blue);
             transition: all 0.2s ease;
         }
         .btn-secondary-outline:hover {
             background-color: var(--bg-secondary);
         }
 
-        /* Content Blocks */
         .card-panel {
             background-color: #FFFFFF;
             border: 1px solid var(--bg-secondary);
-            border-radius: 8px;
-            transition: box-shadow 0.3s ease;
-        }
-        .card-panel:hover {
-            box-shadow: 0 10px 25px -5px rgba(28, 36, 48, 0.05);
-            border-color: var(--steel-blue);
-        }
-
-        .accent-dot {
-            color: var(--soft-cyan);
+            border-radius: 4px;
+            transition: all 0.3s ease;
         }
 
         .section-navy {
             background-color: var(--deep-navy);
             color: #FFFFFF;
         }
+
+        .hdqs-glow {
+            box-shadow: 0 0 40px -10px rgba(79, 163, 165, 0.2);
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col">
 
-    <!-- Header -->
-    <nav class="fixed w-full z-50 nav-navy py-4">
+    <!-- GLOBAL HEADER -->
+    <nav class="fixed w-full z-50 nav-navy py-4 shadow-lg">
         <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
-            <a href="index.html" class="flex items-center space-x-3">
-                <div class="bg-white p-1.5 rounded">
-                    <i data-lucide="layers" class="w-6 h-6 text-[#0E1A2B]"></i>
+            <!-- Logo -->
+            <a href="#home" class="flex items-center space-x-3">
+                <div class="bg-white p-1 rounded-sm">
+                    <i data-lucide="box" class="w-6 h-6 text-[#0E1A2B]"></i>
                 </div>
                 <div class="leading-none">
-                    <span class="block font-extrabold text-xl tracking-tighter text-white">SIA Software</span>
-                    <span class="block text-[9px] font-bold text-[#4FA3A5] tracking-[0.4em] uppercase mt-0.5">Innovations</span>
+                    <span class="block font-extrabold text-lg tracking-tighter text-white uppercase">SIA Software</span>
+                    <span class="block text-[8px] font-bold text-[#4FA3A5] tracking-[0.4em] uppercase mt-0.5">Innovations</span>
                 </div>
             </a>
+            <!-- Navigation -->
             <div class="hidden md:flex items-center space-x-10">
-                <div class="flex space-x-8 text-xs font-bold uppercase tracking-widest">
-                    <a href="index.html" class="text-[#4FA3A5]">Home</a>
-                    <a href="about.html" class="text-gray-300 hover:text-white transition-colors">About</a>
-                    <a href="products.html" class="text-gray-300 hover:text-white transition-colors">Products</a>
+                <div class="flex space-x-8 text-[11px] font-bold uppercase tracking-widest">
+                    <a href="#home" class="text-white hover:text-[#4FA3A5]">Home</a>
+                    <a href="#about" class="text-gray-400 hover:text-white transition-colors">About</a>
+                    <a href="#products" class="text-gray-400 hover:text-white transition-colors">Products</a>
+                    <a href="#contact" class="text-gray-400 hover:text-white transition-colors">Contact</a>
                 </div>
-                <a href="contact.html" class="btn-primary-steel px-6 py-2.5 rounded text-[11px] font-black uppercase tracking-widest">
-                    Collaborate
+                <a href="#contact" class="btn-primary-steel px-5 py-2 rounded-sm text-[10px] font-black uppercase tracking-widest">
+                    Collaborate With Us
                 </a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero -->
-    <main class="flex-grow flex flex-col justify-center pt-48 pb-20 px-6 max-w-7xl mx-auto relative w-full">
-        <div class="grid lg:grid-cols-5 gap-12 items-center">
-            <div class="lg:col-span-3">
-                <div class="mono text-[11px] font-bold text-[#2A4D7A] uppercase tracking-[0.4em] mb-6 flex items-center">
-                    <span class="w-8 h-[2px] bg-[#2A4D7A] mr-4"></span>
-                    Identity & Software Systems
+    <!-- 1. HOME SECTION -->
+    <section id="home" class="min-h-screen flex flex-col justify-center pt-32 pb-20 px-6 max-w-7xl mx-auto w-full">
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+                <div class="mono text-[10px] font-bold text-[#2A4D7A] uppercase tracking-[0.5em] mb-6">
+                    SIA Software Innovations
                 </div>
-                <h1 class="text-6xl md:text-7xl font-extrabold mb-8 leading-[1.1] tracking-tighter text-[#0E1A2B]">
-                    Access Beyond <br><span class="text-[#2A4D7A]">Limits<span class="accent-dot">.</span></span>
+                <h1 class="text-5xl md:text-7xl font-extrabold mb-8 leading-[1.1] tracking-tighter text-[#0E1A2B]">
+                    ACCESS BEYOND <br><span class="text-[#2A4D7A]">LIMITS.</span>
                 </h1>
-                <p class="text-lg md:text-xl text-[#5E6B7A] leading-relaxed mb-10 max-w-xl">
-                    Engineering reliable <span class="text-[#0E1A2B] font-semibold">software-defined ecosystems</span> for high-performance research and industrial scalability.
+                <p class="text-lg text-[#5E6B7A] leading-relaxed mb-8 max-w-xl">
+                    SIA Software Innovations is a software-focused technology company engaged in the design and development of structured, scalable software systems. 
+                    We build platforms that support learning, research, and applied problem-solving.
                 </p>
                 <div class="flex flex-wrap gap-4">
-                    <a href="contact.html" class="btn-primary-steel px-10 py-4 rounded text-xs font-black uppercase tracking-widest">
-                        Start Collaboration
+                    <a href="#contact" class="btn-primary-steel px-8 py-4 rounded-sm text-xs font-black uppercase tracking-widest">
+                        Collaborate With Us
                     </a>
-                    <a href="products.html" class="btn-secondary-outline px-10 py-4 rounded text-xs font-black uppercase tracking-widest">
+                    <a href="#products" class="btn-secondary-outline px-8 py-4 rounded-sm text-xs font-black uppercase tracking-widest">
                         View Products
                     </a>
                 </div>
             </div>
-            
-            <div class="lg:col-span-2">
-                <div class="bg-[#E6EBF1] p-8 rounded-xl border border-gray-200">
-                    <div class="space-y-6">
-                        <div class="flex items-center justify-between border-b border-gray-300 pb-4">
-                            <span class="mono text-[10px] font-bold text-[#5E6B7A]">SYSTEM_CORE_V4</span>
-                            <span class="flex h-2 w-2 rounded-full bg-[#4FA3A5]"></span>
-                        </div>
-                        <div class="space-y-3">
-                            <div class="h-2 w-full bg-white rounded"></div>
-                            <div class="h-2 w-2/3 bg-white rounded"></div>
-                            <div class="h-2 w-full bg-white rounded"></div>
-                        </div>
-                        <div class="pt-4">
-                            <div class="bg-[#2A4D7A] h-12 w-full rounded flex items-center justify-center">
-                                <span class="text-[10px] font-bold text-white uppercase tracking-widest">Processing Data...</span>
-                            </div>
-                        </div>
+            <div class="hidden lg:block">
+                <div class="card-panel p-1 border-gray-200">
+                    <div class="bg-slate-50 p-12 flex flex-col items-center justify-center text-center">
+                        <i data-lucide="cpu" class="w-16 h-16 text-[#2A4D7A] mb-6"></i>
+                        <h3 class="text-sm font-bold uppercase tracking-widest text-[#0E1A2B]">Structured Engineering</h3>
+                        <p class="text-xs text-gray-500 mt-2">Disciplined approach to computational clarity.</p>
                     </div>
                 </div>
             </div>
         </div>
-    </main>
 
-    <!-- Core Features -->
-    <section class="py-24 px-6 bg-white border-y border-[#E6EBF1]">
+        <!-- What We Do -->
+        <div class="mt-32 grid md:grid-cols-2 gap-12 border-t border-gray-200 pt-16">
+            <div>
+                <h3 class="text-xl font-extrabold text-[#0E1A2B] mb-6 uppercase tracking-tight">What We Do</h3>
+                <ul class="space-y-4 text-sm text-[#5E6B7A] font-medium">
+                    <li class="flex items-start gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-[#4FA3A5] flex-shrink-0"></i> Software platforms and system-level solutions</li>
+                    <li class="flex items-start gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-[#4FA3A5] flex-shrink-0"></i> Computational and data-oriented applications</li>
+                    <li class="flex items-start gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-[#4FA3A5] flex-shrink-0"></i> Research-supporting tools and environments</li>
+                    <li class="flex items-start gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-[#4FA3A5] flex-shrink-0"></i> Programmatic frameworks and application software</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-xl font-extrabold text-[#0E1A2B] mb-6 uppercase tracking-tight">Orientation</h3>
+                <p class="text-sm text-[#5E6B7A] leading-relaxed mb-4">
+                    Our work emphasizes correctness, structure, scalability, and long-term usability. We focus on building software systems that enable meaningful work in academic, research, and applied contexts.
+                </p>
+                <p class="text-sm text-[#5E6B7A] leading-relaxed">
+                    Our approach is grounded in disciplined engineering and clarity of purpose, with an emphasis on systems that remain stable, understandable, and extensible over time.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. ABOUT SECTION -->
+    <section id="about" class="py-32 px-6 bg-white border-y border-[#E6EBF1]">
         <div class="max-w-7xl mx-auto">
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="card-panel p-10">
-                    <div class="w-12 h-12 bg-[#F4F6F8] rounded flex items-center justify-center mb-6">
-                        <i data-lucide="shield" class="w-6 h-6 text-[#2A4D7A]"></i>
+            <div class="grid lg:grid-cols-3 gap-16">
+                <div class="lg:col-span-2">
+                    <h2 class="text-xs font-bold text-[#4FA3A5] uppercase tracking-[0.4em] mb-6">Who We Are</h2>
+                    <h3 class="text-3xl font-extrabold text-[#0E1A2B] mb-8 leading-tight">Simplified Integrated Architecture (SIA)</h3>
+                    <p class="text-lg text-[#5E6B7A] leading-relaxed mb-10">
+                        SIA Software Innovations Private Limited is an Indian software company focused on structured system design and software innovation. The name SIA stands for <strong>Simplified Integrated Architecture</strong>, reflecting our approach to building software systems that are internally coherent and practically usable.
+                    </p>
+                    
+                    <div class="grid md:grid-cols-2 gap-10">
+                        <div>
+                            <h4 class="text-sm font-bold text-[#2A4D7A] uppercase mb-4 tracking-widest">What We Build</h4>
+                            <ul class="text-sm text-[#5E6B7A] space-y-2">
+                                <li>• Software architectures and platforms</li>
+                                <li>• Application-level software systems</li>
+                                <li>• Programmatic tools and frameworks</li>
+                                <li>• Research and learning support systems</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold text-[#2A4D7A] uppercase mb-4 tracking-widest">Our Approach</h4>
+                            <ul class="text-sm text-[#5E6B7A] space-y-2">
+                                <li>• Sound engineering principles</li>
+                                <li>• Clear system boundaries</li>
+                                <li>• Scalable and maintainable design</li>
+                                <li>• Deployment-oriented implementation</li>
+                            </ul>
+                        </div>
                     </div>
-                    <h4 class="text-lg font-extrabold text-[#0E1A2B] mb-3 uppercase tracking-tight">Enterprise Security</h4>
-                    <p class="text-sm text-[#5E6B7A] leading-relaxed">Hardened architectures protecting data integrity at every interaction point.</p>
                 </div>
-                <div class="card-panel p-10">
-                    <div class="w-12 h-12 bg-[#F4F6F8] rounded flex items-center justify-center mb-6">
-                        <i data-lucide="cpu" class="w-6 h-6 text-[#2A4D7A]"></i>
+
+                <div class="space-y-8">
+                    <div class="card-panel p-8 bg-[#F4F6F8]">
+                        <h4 class="text-xs font-bold text-[#0E1A2B] uppercase mb-6 tracking-widest border-b border-gray-200 pb-2">Leadership</h4>
+                        <div class="space-y-6">
+                            <div>
+                                <p class="text-sm font-extrabold text-[#1C2430]">N.S.D.N. Seshabattara Venkata</p>
+                                <p class="text-[10px] text-[#5E6B7A] font-bold uppercase">Director | DIN: 11426220</p>
+                                <a href="mailto:insights@siasoftwareinnovations.com" class="text-[10px] text-[#2A4D7A] font-bold">insights@siasoftwareinnovations.com</a>
+                            </div>
+                            <div>
+                                <p class="text-sm font-extrabold text-[#1C2430]">Uday Chandar Medicharla</p>
+                                <p class="text-[10px] text-[#5E6B7A] font-bold uppercase">Director | DIN: 11426219</p>
+                                <a href="mailto:uday@siasoftwareinnovations.com" class="text-[10px] text-[#2A4D7A] font-bold">uday@siasoftwareinnovations.com</a>
+                            </div>
+                        </div>
                     </div>
-                    <h4 class="text-lg font-extrabold text-[#0E1A2B] mb-3 uppercase tracking-tight">Core Processing</h4>
-                    <p class="text-sm text-[#5E6B7A] leading-relaxed">Sub-millisecond latency for real-time industrial and research applications.</p>
-                </div>
-                <div class="card-panel p-10">
-                    <div class="w-12 h-12 bg-[#F4F6F8] rounded flex items-center justify-center mb-6">
-                        <i data-lucide="globe" class="w-6 h-6 text-[#2A4D7A]"></i>
+                    <div class="card-panel p-8 bg-[#0E1A2B] text-white">
+                        <h4 class="text-xs font-bold text-[#4FA3A5] uppercase mb-4 tracking-widest">Company Info</h4>
+                        <div class="space-y-2 text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+                            <p>Incorporated: <span class="text-white">12 Dec 2025</span></p>
+                            <p>Industry: <span class="text-white">IT Services / Product Dev</span></p>
+                        </div>
                     </div>
-                    <h4 class="text-lg font-extrabold text-[#0E1A2B] mb-3 uppercase tracking-tight">Scalable Edge</h4>
-                    <p class="text-sm text-[#5E6B7A] leading-relaxed">Distributed systems that grow seamlessly with your operational demands.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="section-navy py-20 px-6">
+    <!-- 3. PRODUCTS SECTION -->
+    <section id="products" class="py-32 px-6 bg-[#F4F6F8]">
         <div class="max-w-7xl mx-auto">
-            <div class="grid md:grid-cols-4 gap-12 mb-16">
-                <div class="col-span-2">
-                    <h2 class="text-2xl font-extrabold tracking-tighter mb-2">SIA SOFTWARE INNOVATIONS</h2>
-                    <p class="text-[#4FA3A5] text-[10px] font-bold uppercase tracking-[0.4em] mb-6">Access Beyond Limits</p>
-                    <p class="text-gray-400 text-sm max-w-sm">
-                        A structured software technology company dedicated to the development of resilient, scalable digital systems.
-                    </p>
-                </div>
-                <div>
-                    <h4 class="text-xs font-bold text-white mb-6 uppercase tracking-widest">Exploration</h4>
-                    <ul class="space-y-4 text-xs font-medium text-gray-400">
-                        <li><a href="about.html" class="hover:text-[#4FA3A5]">About Company</a></li>
-                        <li><a href="products.html" class="hover:text-[#4FA3A5]">Our Products</a></li>
-                        <li><a href="contact.html" class="hover:text-[#4FA3A5]">Collaborate</a></li>
+            <div class="text-center mb-20">
+                <h2 class="text-xs font-bold text-[#4FA3A5] uppercase tracking-[0.4em] mb-4">Core Platform</h2>
+                <h3 class="text-4xl font-extrabold text-[#0E1A2B] mb-6">HDQS — Hyper-Dimensional Quantum System</h3>
+                <p class="text-[#5E6B7A] max-w-3xl mx-auto text-lg leading-relaxed">
+                    A quantum-inspired computational platform implemented entirely in software, designed to support advanced research workflows on classical infrastructure.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div class="card-panel p-12 hdqs-glow relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-[#4FA3A5]/5 rounded-bl-full"></div>
+                    <h4 class="text-xl font-extrabold text-[#0E1A2B] mb-6 flex items-center gap-3">
+                        <i data-lucide="terminal" class="w-6 h-6 text-[#2A4D7A]"></i> Platform Capabilities
+                    </h4>
+                    <ul class="space-y-4 text-sm text-[#5E6B7A] mb-8">
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-[#4FA3A5] rounded-full"></span> Advanced computational experimentation</li>
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-[#4FA3A5] rounded-full"></span> Algorithmic and model-level exploration</li>
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-[#4FA3A5] rounded-full"></span> Long-range interaction and correlation studies</li>
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-[#4FA3A5] rounded-full"></span> Stable and reproducible computational workflows</li>
                     </ul>
+                    <div class="bg-gray-50 p-6 rounded border border-gray-100">
+                        <p class="text-[11px] font-bold text-[#0E1A2B] uppercase tracking-widest mb-2">Platform Characteristic</p>
+                        <p class="text-xs text-gray-500 italic">"Focuses on reconstructing useful computational properties through structured, software-defined methods without dependence on physical hardware."</p>
+                    </div>
                 </div>
-                <div>
-                    <h4 class="text-xs font-bold text-white mb-6 uppercase tracking-widest">Identification</h4>
-                    <div class="space-y-4 text-[10px] font-bold text-gray-500 uppercase tracking-widest">
-                        <p>CIN: <span class="text-gray-300">U62013AP2025PTC122642</span></p>
-                        <p>DPIIT: <span class="text-gray-300">DIPP235818</span></p>
+
+                <div class="space-y-6">
+                    <div class="card-panel p-8">
+                        <h4 class="text-sm font-bold text-[#0E1A2B] uppercase mb-4 tracking-widest">Research Datasets</h4>
+                        <p class="text-sm text-[#5E6B7A] mb-4">SIA develops datasets aligned with industry quantum workflows for:</p>
+                        <div class="grid grid-cols-1 gap-2 text-[11px] font-bold text-[#2A4D7A] uppercase">
+                            <span class="bg-[#F4F6F8] px-3 py-2 rounded">Quantum-Inspired Machine Learning (QML)</span>
+                            <span class="bg-[#F4F6F8] px-3 py-2 rounded">Experimental Algorithm Evaluation</span>
+                            <span class="bg-[#F4F6F8] px-3 py-2 rounded">Academic Research Datasets</span>
+                        </div>
+                    </div>
+                    <div class="card-panel p-8 bg-[#2A4D7A] text-white">
+                        <h4 class="text-sm font-bold text-[#4FA3A5] uppercase mb-4 tracking-widest">Engagement</h4>
+                        <p class="text-sm text-gray-200 mb-6 leading-relaxed">Access to HDQS and associated datasets is provided through professional and collaborative engagements.</p>
+                        <a href="mailto:contact@siasoftwareinnovations.com" class="text-sm font-extrabold flex items-center gap-2 border-b border-white/20 pb-1 w-max">
+                            contact@siasoftwareinnovations.com <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                        </a>
                     </div>
                 </div>
             </div>
-            <div class="pt-10 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-bold text-gray-500 tracking-[0.2em]">
-                <span>© 2025 SIA SOFTWARE INNOVATIONS PVT LTD. ALL RIGHTS RESERVED.</span>
-                <span class="text-gray-400">ANDHRA PRADESH, INDIA</span>
+        </div>
+    </section>
+
+    <!-- 4. CONTACT SECTION -->
+    <section id="contact" class="py-32 px-6 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-16">
+                <div>
+                    <h2 class="text-xs font-bold text-[#4FA3A5] uppercase tracking-[0.4em] mb-6">Contact & Engagement</h2>
+                    <h3 class="text-3xl font-extrabold text-[#0E1A2B] mb-8">Long-term Technical Partnerships.</h3>
+                    <p class="text-[#5E6B7A] leading-relaxed mb-12">
+                        We value clarity, shared objectives, and sustained collaboration. Our engagements are structured to support meaningful outcomes rather than short-term interactions.
+                    </p>
+                    <div class="space-y-6">
+                        <div class="flex gap-4">
+                            <div class="w-10 h-10 bg-[#F4F6F8] flex items-center justify-center rounded-sm">
+                                <i data-lucide="mail" class="w-5 h-5 text-[#2A4D7A]"></i>
+                            </div>
+                            <div>
+                                <p class="text-[10px] font-bold text-[#5E6B7A] uppercase tracking-widest">General Inquiries</p>
+                                <a href="mailto:info@siasoftwareinnovations.com" class="text-sm font-bold text-[#0E1A2B]">info@siasoftwareinnovations.com</a>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-10 h-10 bg-[#F4F6F8] flex items-center justify-center rounded-sm">
+                                <i data-lucide="life-buoy" class="w-5 h-5 text-[#2A4D7A]"></i>
+                            </div>
+                            <div>
+                                <p class="text-[10px] font-bold text-[#5E6B7A] uppercase tracking-widest">Technical Support</p>
+                                <a href="mailto:support@siasoftwareinnovations.com" class="text-sm font-bold text-[#0E1A2B]">support@siasoftwareinnovations.com</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-[#F4F6F8] p-10 rounded-sm">
+                    <h4 class="text-sm font-bold text-[#0E1A2B] uppercase mb-8 tracking-widest">Engagement Areas</h4>
+                    <div class="grid gap-4">
+                        <div class="card-panel p-5 text-sm font-medium text-[#5E6B7A]">Platform usage and evaluation</div>
+                        <div class="card-panel p-5 text-sm font-medium text-[#5E6B7A]">Research-oriented collaboration</div>
+                        <div class="card-panel p-5 text-sm font-medium text-[#5E6B7A]">Dataset-based experimentation</div>
+                        <div class="card-panel p-5 text-sm font-medium text-[#5E6B7A]">Applied software development</div>
+                    </div>
+                    <div class="mt-8 pt-8 border-t border-gray-200">
+                        <p class="text-[10px] font-bold text-[#5E6B7A] uppercase tracking-widest mb-2">Location</p>
+                        <p class="text-sm font-extrabold text-[#0E1A2B]">Andhra Pradesh, India</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GLOBAL FOOTER -->
+    <footer class="section-navy pt-20 pb-10 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
+                <div class="col-span-2">
+                    <h2 class="text-xl font-extrabold tracking-tighter mb-1 uppercase">SIA Software Innovations</h2>
+                    <p class="text-[#4FA3A5] text-[9px] font-bold uppercase tracking-[0.4em] mb-8">ACCESS BEYOND LIMITS</p>
+                    <div class="text-gray-400 text-xs space-y-4">
+                        <div class="space-y-1">
+                            <p class="font-bold text-white uppercase tracking-widest text-[10px]">CIN</p>
+                            <p>U62013AP2025PTC122642</p>
+                        </div>
+                        <div class="space-y-1">
+                            <p class="font-bold text-white uppercase tracking-widest text-[10px]">Startup Recognition ID (DPIIT)</p>
+                            <p>DIPP235818</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-[10px] font-bold text-white mb-6 uppercase tracking-[0.2em] border-b border-white/10 pb-2">Navigation</h4>
+                    <ul class="space-y-4 text-[11px] font-medium text-gray-400 uppercase tracking-widest">
+                        <li><a href="#home" class="hover:text-white transition-colors">Home</a></li>
+                        <li><a href="#about" class="hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#products" class="hover:text-white transition-colors">Products</a></li>
+                        <li><a href="#contact" class="hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-[10px] font-bold text-white mb-6 uppercase tracking-[0.2em] border-b border-white/10 pb-2">Support</h4>
+                    <ul class="space-y-4 text-[11px] font-medium text-gray-400 uppercase tracking-widest">
+                        <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Terms & Conditions</a></li>
+                        <li><a href="mailto:info@siasoftwareinnovations.com" class="hover:text-white transition-colors">Introductions</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pt-10 border-t border-gray-800 flex flex-col lg:flex-row justify-between items-center gap-6">
+                <div class="text-[9px] font-bold text-gray-500 uppercase tracking-[0.3em] text-center lg:text-left">
+                    <p>© SIA Software Innovations Private Limited. All rights reserved.</p>
+                </div>
+                <div class="flex items-center gap-4 text-[9px] font-bold text-gray-500 uppercase tracking-[0.2em]">
+                    <span class="text-gray-300">EST. DEC 2025</span>
+                    <span class="w-1 h-1 bg-gray-700 rounded-full"></span>
+                    <span>Andhra Pradesh, India</span>
+                </div>
             </div>
         </div>
     </footer>
