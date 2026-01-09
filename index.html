@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home | SIA Software Innovations</title>
+    <title>SIA Software Innovations | Access Beyond Limits</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
@@ -19,6 +19,8 @@
             --text-secondary: #5E6B7A;
         }
 
+        html { scroll-behavior: smooth; }
+
         body { 
             font-family: 'Plus Jakarta Sans', sans-serif; 
             color: var(--text-primary); 
@@ -30,7 +32,8 @@
         .mono { font-family: 'JetBrains Mono', monospace; }
 
         .nav-navy { 
-            background: var(--deep-navy); 
+            background: rgba(14, 26, 43, 0.95); 
+            backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
@@ -53,13 +56,8 @@
             box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
         }
 
-        .section-navy {
-            background-color: var(--deep-navy);
-            color: #FFFFFF;
-        }
-
         .image-container {
-            height: 12rem; /* h-48 */
+            height: 12rem;
             position: relative;
             background-color: var(--deep-navy);
             overflow: hidden;
@@ -86,14 +84,28 @@
             justify-content: center;
             z-index: 10;
         }
+
+        .section-padding { padding: 100px 0; }
+        
+        /* Contact Form Styles */
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            background: var(--bg-primary);
+            border: 1px solid var(--bg-secondary);
+            border-radius: 2px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .form-input:focus { border-color: var(--soft-cyan); }
     </style>
 </head>
-<body class="min-h-screen flex flex-col">
+<body class="min-h-screen">
 
     <!-- GLOBAL HEADER -->
     <nav class="fixed w-full z-50 nav-navy py-4 shadow-lg">
         <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
-            <a href="index.html" class="flex items-center space-x-3">
+            <a href="#home" class="flex items-center space-x-3">
                 <div class="bg-white p-1 rounded-sm">
                     <i data-lucide="box" class="w-6 h-6 text-[#0E1A2B]"></i>
                 </div>
@@ -104,156 +116,273 @@
             </a>
             <div class="hidden md:flex items-center space-x-10">
                 <div class="flex space-x-8 text-[11px] font-bold uppercase tracking-widest">
-                    <a href="index.html" class="text-[#4FA3A5]">Home</a>
-                    <a href="about.html" class="text-gray-400 hover:text-white transition-colors">About</a>
-                    <a href="products.html" class="text-gray-400 hover:text-white transition-colors">Products</a>
-                    <a href="contact.html" class="text-gray-400 hover:text-white transition-colors">Contact</a>
+                    <a href="#home" class="text-white hover:text-[#4FA3A5] transition-colors">Home</a>
+                    <a href="#about" class="text-gray-400 hover:text-white transition-colors">About</a>
+                    <a href="#products" class="text-gray-400 hover:text-white transition-colors">Products</a>
+                    <a href="#contact" class="text-gray-400 hover:text-white transition-colors">Contact</a>
                 </div>
-                <a href="contact.html" class="btn-primary-steel px-5 py-2 rounded-sm text-[10px] font-black uppercase tracking-widest">
-                    Collaborate With Us
+                <a href="#contact" class="btn-primary-steel px-5 py-2 rounded-sm text-[10px] font-black uppercase tracking-widest">
+                    Collaborate
                 </a>
             </div>
         </div>
     </nav>
 
-    <!-- HERO SECTION -->
-    <main class="flex-grow flex flex-col pt-20">
-        
-        <div class="relative min-h-[70vh] flex items-center overflow-hidden bg-[#0E1A2B]">
-            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=2000" 
-                 alt="Global Network" 
-                 class="absolute inset-0 w-full h-full object-cover opacity-30">
-            <div class="absolute inset-0 bg-gradient-to-r from-[#0E1A2B] via-[#0E1A2B]/80 to-transparent"></div>
+    <!-- SECTION: HOME (HERO) -->
+    <section id="home" class="relative min-h-screen flex items-center overflow-hidden bg-[#0E1A2B]">
+        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=2000" 
+             alt="Global Network" 
+             class="absolute inset-0 w-full h-full object-cover opacity-30">
+        <div class="absolute inset-0 bg-gradient-to-r from-[#0E1A2B] via-[#0E1A2B]/80 to-transparent"></div>
 
-            <div class="relative z-10 max-w-7xl mx-auto px-6 w-full">
-                <div class="max-w-2xl">
-                    <div class="mono text-[10px] font-bold text-[#4FA3A5] uppercase tracking-[0.5em] mb-6">SIA Software Innovations</div>
-                    <h1 class="text-5xl md:text-7xl font-extrabold mb-8 leading-[1.1] tracking-tighter text-white uppercase">
-                        Access Beyond <br><span class="text-[#4FA3A5]">Limits.</span>
-                    </h1>
-                    <p class="text-lg text-gray-300 leading-relaxed mb-8">
-                        Architecting scalable software systems for research and industry.
-                    </p>
-                    <div class="flex flex-wrap gap-4">
-                        <a href="contact.html" class="btn-primary-steel px-8 py-4 rounded-sm text-xs font-black uppercase tracking-widest">
-                            Get In Touch
-                        </a>
+        <div class="relative z-10 max-w-7xl mx-auto px-6 w-full">
+            <div class="max-w-2xl">
+                <div class="mono text-[10px] font-bold text-[#4FA3A5] uppercase tracking-[0.5em] mb-6">SIA Software Innovations</div>
+                <h1 class="text-5xl md:text-7xl font-extrabold mb-8 leading-[1.1] tracking-tighter text-white uppercase">
+                    Access Beyond <br><span class="text-[#4FA3A5]">Limits.</span>
+                </h1>
+                <p class="text-lg text-gray-300 leading-relaxed mb-8">
+                    Architecting scalable software systems for research and industry. We specialize in structured, dependable solutions for complex computational challenges.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#products" class="btn-primary-steel px-8 py-4 rounded-sm text-xs font-black uppercase tracking-widest">
+                        View Products
+                    </a>
+                    <a href="#contact" class="bg-white/10 hover:bg-white/20 text-white border border-white/20 px-8 py-4 rounded-sm text-xs font-black uppercase tracking-widest transition-all">
+                        Contact Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: COMPETENCIES (FOCUS) -->
+    <section class="section-padding px-6 bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16">
+                <h2 class="text-xs font-bold text-[#4FA3A5] uppercase tracking-[0.4em] mb-4 text-center">Strategic Focus</h2>
+                <h3 class="text-3xl font-extrabold text-[#0E1A2B] uppercase tracking-tighter text-center">Core Competencies</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card 1 -->
+                <div class="card-panel group">
+                    <div class="image-container">
+                        <img src="image1.jfif" alt="Systems" onerror="this.src='https://images.unsplash.com/photo-1558494949-ef010cbdcc4b?auto=format&fit=crop&q=80&w=800'">
+                        <div class="image-overlay-content">
+                            <i data-lucide="server" class="w-12 h-12 text-white opacity-90 group-hover:scale-110 transition-transform"></i>
+                        </div>
+                        <span class="absolute bottom-4 left-4 mono text-[8px] font-bold text-white/60 uppercase tracking-widest z-20">Asset: 001/SYS</span>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xs font-black text-[#0E1A2B] uppercase tracking-widest mb-3">Distributed Systems</h4>
+                        <p class="text-[11px] text-[#5E6B7A] leading-relaxed">Infrastructure designed for resilience, fault-tolerance, and high-availability operations.</p>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="card-panel group">
+                    <div class="image-container">
+                        <img src="image2.jfif" alt="Logic" onerror="this.src='https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&q=80&w=800'">
+                        <div class="image-overlay-content">
+                            <i data-lucide="cpu" class="w-12 h-12 text-white opacity-90 group-hover:scale-110 transition-transform"></i>
+                        </div>
+                        <span class="absolute bottom-4 left-4 mono text-[8px] font-bold text-white/60 uppercase tracking-widest z-20">Asset: 002/LGC</span>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xs font-black text-[#0E1A2B] uppercase tracking-widest mb-3">Algorithmic Logic</h4>
+                        <p class="text-[11px] text-[#5E6B7A] leading-relaxed">Custom computational models built to solve complex mathematical and data-driven problems.</p>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="card-panel group">
+                    <div class="image-container">
+                        <img src="image3.jfif" alt="Research" onerror="this.src='https://images.unsplash.com/photo-1532187863486-abf51ad95699?auto=format&fit=crop&q=80&w=800'">
+                        <div class="image-overlay-content">
+                            <i data-lucide="beaker" class="w-12 h-12 text-white opacity-90 group-hover:scale-110 transition-transform"></i>
+                        </div>
+                        <span class="absolute bottom-4 left-4 mono text-[8px] font-bold text-white/60 uppercase tracking-widest z-20">Asset: 003/RES</span>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xs font-black text-[#0E1A2B] uppercase tracking-widest mb-3">Applied Research</h4>
+                        <p class="text-[11px] text-[#5E6B7A] leading-relaxed">Translating theoretical research into production-ready software environments.</p>
+                    </div>
+                </div>
+                <!-- Card 4 -->
+                <div class="card-panel group">
+                    <div class="image-container">
+                        <img src="image4.jfif" alt="Deployment" onerror="this.src='https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800'">
+                        <div class="image-overlay-content">
+                            <i data-lucide="cloud-lightning" class="w-12 h-12 text-white opacity-90 group-hover:scale-110 transition-transform"></i>
+                        </div>
+                        <span class="absolute bottom-4 left-4 mono text-[8px] font-bold text-white/60 uppercase tracking-widest z-20">Asset: 004/DEP</span>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xs font-black text-[#0E1A2B] uppercase tracking-widest mb-3">Rapid Deployment</h4>
+                        <p class="text-[11px] text-[#5E6B7A] leading-relaxed">Streamlined CI/CD pipelines ensuring software reaches the user with precision and speed.</p>
                     </div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- STRATEGIC FOCUS SECTION WITH CUSTOM IMAGES -->
-        <section class="py-24 px-6 bg-white border-b border-gray-200">
-            <div class="max-w-7xl mx-auto">
-                <div class="mb-16">
-                    <h2 class="text-xs font-bold text-[#4FA3A5] uppercase tracking-[0.4em] mb-4">Strategic Focus</h2>
-                    <h3 class="text-3xl font-extrabold text-[#0E1A2B] uppercase tracking-tighter">Core Competencies</h3>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <!-- Image 1: Systems -->
-                    <div class="card-panel group">
-                        <div class="image-container">
-                            <img src="image1.jfif" alt="Distributed Systems" onerror="this.src='https://images.unsplash.com/photo-1558494949-ef010cbdcc4b?auto=format&fit=crop&q=80&w=800'">
-                            <div class="image-overlay-content">
-                                <i data-lucide="server" class="w-12 h-12 text-white opacity-90 group-hover:scale-110 transition-transform"></i>
-                            </div>
-                            <span class="absolute bottom-4 left-4 mono text-[8px] font-bold text-white/60 uppercase tracking-widest z-20">Asset: 001/SYS</span>
-                        </div>
-                        <div class="p-6">
-                            <h4 class="text-xs font-black text-[#0E1A2B] uppercase tracking-widest mb-3">Distributed Systems</h4>
-                            <p class="text-[11px] text-[#5E6B7A] leading-relaxed">Infrastructure designed for resilience, fault-tolerance, and high-availability operations.</p>
-                        </div>
+    <!-- SECTION: ABOUT -->
+    <section id="about" class="section-padding px-6 bg-slate-50">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center">
+            <div>
+                <h2 class="text-xs font-bold text-[#4FA3A5] uppercase tracking-[0.4em] mb-4">The Company</h2>
+                <h3 class="text-4xl font-extrabold text-[#0E1A2B] mb-8 uppercase tracking-tighter">Structured <br>Engineering.</h3>
+                <p class="text-sm text-[#5E6B7A] leading-relaxed mb-6">
+                    SIA Software Innovations is a software-focused technology company engaged in the design and development of structured, scalable software systems.
+                </p>
+                <div class="space-y-4">
+                    <div class="flex items-center gap-4">
+                        <div class="w-8 h-8 rounded-full bg-[#0E1A2B] flex items-center justify-center text-white"><i data-lucide="shield" class="w-4 h-4"></i></div>
+                        <span class="text-xs font-bold uppercase tracking-widest">Reliability as a Core Tenet</span>
                     </div>
-
-                    <!-- Image 2: Logic -->
-                    <div class="card-panel group">
-                        <div class="image-container">
-                            <img src="image2.jfif" alt="Algorithmic Logic" onerror="this.src='https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&q=80&w=800'">
-                            <div class="image-overlay-content">
-                                <i data-lucide="cpu" class="w-12 h-12 text-white opacity-90 group-hover:scale-110 transition-transform"></i>
-                            </div>
-                            <span class="absolute bottom-4 left-4 mono text-[8px] font-bold text-white/60 uppercase tracking-widest z-20">Asset: 002/LGC</span>
-                        </div>
-                        <div class="p-6">
-                            <h4 class="text-xs font-black text-[#0E1A2B] uppercase tracking-widest mb-3">Algorithmic Logic</h4>
-                            <p class="text-[11px] text-[#5E6B7A] leading-relaxed">Custom computational models built to solve complex mathematical and data-driven problems.</p>
-                        </div>
-                    </div>
-
-                    <!-- Image 3: Research -->
-                    <div class="card-panel group">
-                        <div class="image-container">
-                            <img src="image3.jfif" alt="Applied Research" onerror="this.src='https://images.unsplash.com/photo-1532187863486-abf51ad95699?auto=format&fit=crop&q=80&w=800'">
-                            <div class="image-overlay-content">
-                                <i data-lucide="beaker" class="w-12 h-12 text-white opacity-90 group-hover:scale-110 transition-transform"></i>
-                            </div>
-                            <span class="absolute bottom-4 left-4 mono text-[8px] font-bold text-white/60 uppercase tracking-widest z-20">Asset: 003/RES</span>
-                        </div>
-                        <div class="p-6">
-                            <h4 class="text-xs font-black text-[#0E1A2B] uppercase tracking-widest mb-3">Applied Research</h4>
-                            <p class="text-[11px] text-[#5E6B7A] leading-relaxed">Translating theoretical research into production-ready software environments.</p>
-                        </div>
-                    </div>
-
-                    <!-- Image 4: Deployment -->
-                    <div class="card-panel group">
-                        <div class="image-container">
-                            <img src="image4.jfif" alt="Rapid Deployment" onerror="this.src='https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800'">
-                            <div class="image-overlay-content">
-                                <i data-lucide="cloud-lightning" class="w-12 h-12 text-white opacity-90 group-hover:scale-110 transition-transform"></i>
-                            </div>
-                            <span class="absolute bottom-4 left-4 mono text-[8px] font-bold text-white/60 uppercase tracking-widest z-20">Asset: 004/DEP</span>
-                        </div>
-                        <div class="p-6">
-                            <h4 class="text-xs font-black text-[#0E1A2B] uppercase tracking-widest mb-3">Rapid Deployment</h4>
-                            <p class="text-[11px] text-[#5E6B7A] leading-relaxed">Streamlined CI/CD pipelines ensuring software reaches the user with precision and speed.</p>
-                        </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-8 h-8 rounded-full bg-[#0E1A2B] flex items-center justify-center text-white"><i data-lucide="code-2" class="w-4 h-4"></i></div>
+                        <span class="text-xs font-bold uppercase tracking-widest">Advanced Algorithmic Design</span>
                     </div>
                 </div>
             </div>
-        </section>
+            <div class="relative">
+                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1200" class="rounded-sm shadow-2xl relative z-10" alt="Tech">
+                <div class="absolute -bottom-6 -right-6 w-full h-full border-4 border-[#4FA3A5] z-0"></div>
+            </div>
+        </div>
+    </section>
 
-        <!-- PRE-EXISTING WHAT WE DO SECTION -->
-        <section class="py-24 px-6 max-w-7xl mx-auto w-full">
-            <div class="grid md:grid-cols-2 gap-20 items-center">
-                <div class="grid grid-cols-2 gap-4">
-                    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800" class="rounded-sm shadow-xl w-full h-64 object-cover mt-8" alt="Tech">
-                    <img src="https://images.unsplash.com/photo-1518433278981-1127cc340b09?auto=format&fit=crop&q=80&w=800" class="rounded-sm shadow-xl w-full h-64 object-cover" alt="Data">
-                </div>
-                <div>
-                    <h3 class="text-2xl font-extrabold text-[#0E1A2B] mb-8 uppercase tracking-tight">Our Engagement Model</h3>
-                    <p class="text-sm text-[#5E6B7A] leading-relaxed mb-8">
-                        We collaborate with entities seeking long-term stability and architectural integrity in their software ecosystems.
+    <!-- SECTION: PRODUCTS -->
+    <section id="products" class="section-padding px-6 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-xs font-bold text-[#4FA3A5] uppercase tracking-[0.4em] mb-4">Innovations</h2>
+                <h3 class="text-3xl font-extrabold text-[#0E1A2B] uppercase tracking-tighter">HDQS — Hyper-Dimensional Quantum System</h3>
+            </div>
+            <div class="grid lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2 card-panel p-10 bg-[#0E1A2B] text-white">
+                    <p class="text-lg leading-relaxed text-gray-300 mb-8">
+                        Our flagship quantum-inspired computational platform implemented in software, designed to support research workflows on standard hardware infrastructure.
                     </p>
-                    <a href="about.html" class="text-[10px] font-black text-[#2A4D7A] uppercase tracking-[0.2em] border-b-2 border-[#4FA3A5] pb-1 hover:text-[#4FA3A5] transition-colors">Learn about our philosophy →</a>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h5 class="text-[#4FA3A5] font-black uppercase text-[10px] mb-4 tracking-widest">Key Feature 01</h5>
+                            <p class="text-sm text-gray-400">Advanced algorithmic exploration for high-dimensional data correlation.</p>
+                        </div>
+                        <div>
+                            <h5 class="text-[#4FA3A5] font-black uppercase text-[10px] mb-4 tracking-widest">Key Feature 02</h5>
+                            <p class="text-sm text-gray-400">Computational experimentation environment for model-level development.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-panel p-10 flex flex-col justify-between">
+                    <div>
+                        <h4 class="text-sm font-black uppercase tracking-widest mb-4">Research Data</h4>
+                        <p class="text-xs text-[#5E6B7A]">We maintain specialized datasets for academic and industrial research purposes.</p>
+                    </div>
+                    <button class="btn-primary-steel w-full py-3 text-[10px] font-bold uppercase tracking-widest mt-8">Request Catalog</button>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
+
+    <!-- SECTION: CONTACT -->
+    <section id="contact" class="section-padding px-6 bg-slate-50 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-20">
+            <div>
+                <h2 class="text-xs font-bold text-[#4FA3A5] uppercase tracking-[0.4em] mb-4">Engagement</h2>
+                <h3 class="text-4xl font-extrabold text-[#0E1A2B] mb-8 uppercase tracking-tighter">Get in Touch.</h3>
+                <p class="text-sm text-[#5E6B7A] leading-relaxed mb-10">
+                    We seek collaborations with organizations that value architectural integrity. For project inquiries or platform access, please use the channels below.
+                </p>
+                <div class="space-y-6">
+                    <div class="flex gap-4 items-center">
+                        <i data-lucide="mail" class="w-5 h-5 text-[#2A4D7A]"></i>
+                        <span class="text-sm font-bold">info@siasoftwareinnovations.com</span>
+                    </div>
+                    <div class="flex gap-4 items-center">
+                        <i data-lucide="map-pin" class="w-5 h-5 text-[#2A4D7A]"></i>
+                        <span class="text-sm font-bold uppercase tracking-widest">Andhra Pradesh, India</span>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white p-8 card-panel shadow-sm">
+                <form class="space-y-4">
+                    <div class="grid grid-cols-2 gap-4">
+                        <input type="text" placeholder="Full Name" class="form-input text-xs">
+                        <input type="email" placeholder="Business Email" class="form-input text-xs">
+                    </div>
+                    <input type="text" placeholder="Subject" class="form-input text-xs">
+                    <textarea placeholder="Message" rows="4" class="form-input text-xs"></textarea>
+                    <button type="button" class="btn-primary-steel w-full py-4 text-[10px] font-black uppercase tracking-widest">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
 
     <!-- FOOTER -->
-    <footer class="section-navy pt-20 pb-10 px-6 mt-auto">
-        <div class="max-w-7xl mx-auto text-center md:text-left">
-            <div class="grid md:grid-cols-2 gap-12 mb-10">
-                <div>
+    <footer class="bg-[#0E1A2B] text-white pt-20 pb-10 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
+                <div class="col-span-2">
                     <h2 class="text-xl font-extrabold tracking-tighter mb-1 uppercase">SIA Software Innovations</h2>
-                    <p class="text-[#4FA3A5] text-[9px] font-bold uppercase tracking-[0.4em]">Access Beyond Limits</p>
+                    <p class="text-[#4FA3A5] text-[9px] font-bold uppercase tracking-[0.4em] mb-8">Access Beyond Limits</p>
+                    <div class="text-gray-500 text-[9px] font-bold uppercase space-y-1">
+                        <p>CIN: U62013AP2025PTC122642</p>
+                        <p>DPIIT: DIPP235818</p>
+                    </div>
                 </div>
-                <div class="flex justify-center md:justify-end gap-8 text-[10px] font-bold text-gray-500 uppercase tracking-widest">
-                    <a href="index.html" class="hover:text-white transition-colors">Home</a>
-                    <a href="about.html" class="hover:text-white transition-colors">About</a>
-                    <a href="products.html" class="hover:text-white transition-colors">Products</a>
-                    <a href="contact.html" class="hover:text-white transition-colors">Contact</a>
+                <div>
+                    <h4 class="text-[10px] font-bold mb-6 uppercase tracking-[0.2em] text-[#4FA3A5]">Navigation</h4>
+                    <ul class="space-y-4 text-[11px] font-medium text-gray-400 uppercase tracking-widest">
+                        <li><a href="#home" class="hover:text-white">Home</a></li>
+                        <li><a href="#about" class="hover:text-white">About</a></li>
+                        <li><a href="#products" class="hover:text-white">Products</a></li>
+                        <li><a href="#contact" class="hover:text-white">Contact</a></li>
+                    </ul>
                 </div>
             </div>
-            <div class="pt-8 border-t border-gray-800">
-                <p class="text-[9px] font-bold text-gray-500 uppercase tracking-[0.3em]">© SIA Software Innovations Private Limited. CIN: U62013AP2025PTC122642</p>
+            <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-[9px] font-bold text-gray-600 uppercase tracking-[0.3em]">
+                    © SIA Software Innovations Private Limited. All rights reserved.
+                </p>
+                <div class="flex gap-6">
+                    <i data-lucide="linkedin" class="w-4 h-4 text-gray-600 hover:text-white cursor-pointer"></i>
+                    <i data-lucide="twitter" class="w-4 h-4 text-gray-600 hover:text-white cursor-pointer"></i>
+                </div>
             </div>
         </div>
     </footer>
 
-    <script>lucide.createIcons();</script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Optional: Simple scroll listener for active nav links
+        window.addEventListener('scroll', () => {
+            const sections = ['home', 'about', 'products', 'contact'];
+            const navLinks = document.querySelectorAll('.nav-navy a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const element = document.getElementById(section);
+                if (element) {
+                    const sectionTop = element.offsetTop;
+                    if (pageYOffset >= sectionTop - 100) {
+                        current = section;
+                    }
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('text-[#4FA3A5]');
+                link.classList.add('text-gray-400');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.remove('text-gray-400');
+                    link.classList.add('text-[#4FA3A5]');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
